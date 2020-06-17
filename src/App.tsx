@@ -2,6 +2,11 @@ import React, { useState, KeyboardEvent } from "react";
 import "./App.css";
 import { fetchWather } from "./api/fetchWeather";
 
+interface VisualWeather {
+  description: string;
+  icon: string;
+}
+
 interface Weather {
   main: {
     temp: number;
@@ -10,6 +15,7 @@ interface Weather {
   sys: {
     country: string;
   };
+  weather: VisualWeather[];
 }
 
 const App = () => {
@@ -44,6 +50,14 @@ const App = () => {
           <div className="city-temp">
             {Math.round(weather.main.temp)}
             <sup>&deg;C</sup>
+          </div>
+          <div className="info">
+            <img 
+              className="city-icon" 
+              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
+              alt={weather.weather[0].description}
+            />
+            <p>{weather.weather[0].description}</p>
           </div>
         </div>
       )}
