@@ -1,27 +1,29 @@
-import React, { useState, KeyboardEvent } from 'react';
-import './App.css';
-import { fetchWather } from './api/fetchWeather';
+import React, { useState, KeyboardEvent } from "react";
+import "./App.css";
+import { fetchWather } from "./api/fetchWeather";
 
 interface Weather {
-  main: object;
+  main: {
+    temp: number;
+  };
   name: string;
   sys: {
     country: string;
-  }
+  };
 }
 
 const App = () => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [weather, setWeather] = useState<Weather>({} as Weather);
 
   const search = async (e: KeyboardEvent<HTMLInputElement>) => {
-    if(e.key === 'Enter'){
+    if (e.key === "Enter") {
       const data = await fetchWather(query);
 
       setWeather(data);
-      setQuery('');
+      setQuery("");
     }
-  }
+  };
 
   return (
     <div className="main-container">
@@ -39,10 +41,14 @@ const App = () => {
             <span>{weather.name}</span>
             <sup>{weather.sys.country}</sup>
           </h2>
+          <div className="city-temp">
+            {Math.round(weather.main.temp)}
+            <sup>&deg;C</sup>
+          </div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default App;
