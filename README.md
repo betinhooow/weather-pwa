@@ -23,8 +23,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="public/images/print.png" alt="print" width="375" height="667">
-<img src="public/images/pwa-report.png" alt="pwa-report" width="375" height="667">
+![print](public/images/print.png "print") ![pwa-report](public/images/pwa-report.png "pwa-report")
 
 This is a Weather app, to know how is around all the cities of the world.
 
